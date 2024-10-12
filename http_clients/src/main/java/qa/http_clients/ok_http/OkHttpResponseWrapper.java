@@ -1,4 +1,4 @@
-package qa.entities;
+package qa.http_clients.ok_http;
 
 import kong.unirest.core.json.JSONArray;
 import kong.unirest.core.json.JSONException;
@@ -10,12 +10,12 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
-public class ResponseWrapper {
+public class OkHttpResponseWrapper {
 
     private final Response response;
     private final String cachedBody;
 
-    public ResponseWrapper(Response response) {
+    public OkHttpResponseWrapper(Response response) {
         this.response = response;
         try {
             this.cachedBody = response.body() != null ? response.body().string() : null;

@@ -1,4 +1,4 @@
-package qa.managers.okhttp;
+package qa.http_clients.ok_http;
 
 import lombok.Builder;
 import lombok.Getter;
@@ -6,7 +6,7 @@ import okhttp3.HttpUrl;
 import okhttp3.MediaType;
 import okhttp3.Request;
 import okhttp3.RequestBody;
-import qa.endpoints.ApiEndpoint;
+import qa.http_clients.ok_http.endpoints.ApiEndpoint;
 
 import java.util.Map;
 import java.util.Objects;

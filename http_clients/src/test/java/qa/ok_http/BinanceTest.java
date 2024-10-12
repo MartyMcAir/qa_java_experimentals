@@ -1,13 +1,13 @@
-package qa;
+package qa.ok_http;
 
 import kong.unirest.core.json.JSONArray;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import qa.endpoints.BinanceEndpoints;
-import qa.entities.ResponseWrapper;
-import qa.managers.okhttp.OkHttpRequestBuilder;
-import qa.managers.okhttp.OkhttpManager;
+import qa.http_clients.ok_http.endpoints.BinanceEndpoints;
+import qa.http_clients.ok_http.OkHttpResponseWrapper;
+import qa.http_clients.ok_http.OkHttpRequestBuilder;
+import qa.http_clients.ok_http.OkhttpManager;
 
 import java.util.Map;
 
@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static qa.utils.DateTimeUtils.getUnixTimestampForDateInUnixTimeMilliseconds;
 
-public class BinanceApiTest {
+public class BinanceTest {
 
     private static OkhttpManager manager;
 
@@ -40,7 +40,7 @@ public class BinanceApiTest {
                         "endTime", String.valueOf(endTimeOfTheDay)))
                 .build();
 
-        ResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
+        OkHttpResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
         JSONArray firstKline = response.getJsonArray().getJSONArray(0);
 
         assertAll("Проверка цены для пары BTCUSDT за определенную дату",
@@ -57,7 +57,7 @@ public class BinanceApiTest {
                 .queryParams(Map.of("symbol", "BTCUSDT"))
                 .build();
 
-        ResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
+        OkHttpResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
         assertNotNull(response.body());
     }
 
@@ -68,7 +68,7 @@ public class BinanceApiTest {
                 .endpoint(BinanceEndpoints.EXCHANGE_INFO)
                 .build();
 
-        ResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
+        OkHttpResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
         assertNotNull(response.body());
     }
 
@@ -80,7 +80,7 @@ public class BinanceApiTest {
                 .queryParams(Map.of("symbol", "ETHUSDT", "interval", "1h", "limit", "5"))
                 .build();
 
-        ResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
+        OkHttpResponseWrapper response = manager.sendGetRequest(builder, HTTP_OK);
         assertNotNull(response.body());
     }
 }
