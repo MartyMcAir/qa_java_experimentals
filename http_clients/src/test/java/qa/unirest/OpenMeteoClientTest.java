@@ -55,7 +55,7 @@ public class OpenMeteoClientTest {
         double longitude = -74.0060;
         HttpResponse<JsonNode> response = openMeteoClient.getHourlyWeatherForecast(latitude, longitude);
 
-        assertTrue(response.getStatus() == 200, "HTTP код должен быть 200");
+        assertEquals(200, response.getStatus(), "HTTP код должен быть 200");
         assertTrue(response.getBody().getObject().has("hourly"), "Ответ должен содержать данные о почасовом прогнозе");
         System.out.printf("Почасовой прогноз погоды для Нью-Йорка: %s%n", response.getBody().toPrettyString());
     }
