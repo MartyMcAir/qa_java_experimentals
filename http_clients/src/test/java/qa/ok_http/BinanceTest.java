@@ -18,6 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static qa.utils.DateTimeUtils.getUnixTimestampForDateInUnixTimeMilliseconds;
 
 public class BinanceTest {
+// https://developers.binance.com/docs/binance-spot-api-docs/faqs/market_data_only
 
     private static OkhttpManager manager;
 

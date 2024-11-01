@@ -17,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CryptoCompareApiTest {
+// https://min-api.cryptocompare.com/documentation
 
     private static CryptoCompareService apiService;
 
