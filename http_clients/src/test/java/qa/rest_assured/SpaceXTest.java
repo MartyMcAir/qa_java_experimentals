@@ -3,8 +3,6 @@ package qa.rest_assured;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import qa.http_clients.rest_assured.SpaceXEndpoints;
-import qa.http_clients.rest_assured.RestAssuredManager;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;

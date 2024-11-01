@@ -1,4 +1,4 @@
-package qa.http_clients.rest_assured;
+package qa.rest_assured;
 
 import io.restassured.RestAssured;
 import io.restassured.response.Response;

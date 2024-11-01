@@ -4,10 +4,8 @@ import kong.unirest.core.json.JSONArray;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import qa.http_clients.ok_http.endpoints.BinanceEndpoints;
-import qa.http_clients.ok_http.OkHttpResponseWrapper;
-import qa.http_clients.ok_http.OkHttpRequestBuilder;
-import qa.http_clients.ok_http.OkhttpManager;
+import qa.ok_http.endpoints.BinanceEndpoints;
+import qa.utils.DateTimeUtils;
 
 import java.util.Map;
 
@@ -15,7 +13,6 @@ import static java.net.HttpURLConnection.HTTP_OK;
 import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static qa.utils.DateTimeUtils.getUnixTimestampForDateInUnixTimeMilliseconds;
 
 public class BinanceTest {
 // https://developers.binance.com/docs/binance-spot-api-docs/faqs/market_data_only
@@ -30,7 +27,7 @@ public class BinanceTest {
     @Test
     @DisplayName("Получение данных по свечам для пары BTCUSDT за определенную дату")
     public void getHistoricalKlineDataForDateTest() {
-        long startTime = getUnixTimestampForDateInUnixTimeMilliseconds("01-01-2023");
+        long startTime = DateTimeUtils.getUnixTimestampForDateInUnixTimeMilliseconds("01-01-2023");
         long endTimeOfTheDay = startTime + (24 * 60 * 60 * 1000) - 1;
         OkHttpRequestBuilder builder = OkHttpRequestBuilder.builder()
                 .endpoint(BinanceEndpoints.KLINE_DATA)

@@ -1,4 +1,4 @@
-package qa.http_clients.retrofit;
+package qa.retrofit;
 
 import kong.unirest.core.json.JSONArray;
 import kong.unirest.core.json.JSONObject;

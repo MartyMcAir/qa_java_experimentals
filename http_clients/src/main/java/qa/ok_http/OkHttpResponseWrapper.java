@@ -1,4 +1,4 @@
-package qa.http_clients.ok_http;
+package qa.ok_http;
 
 import kong.unirest.core.json.JSONArray;
 import kong.unirest.core.json.JSONException;

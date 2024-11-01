@@ -1,4 +1,4 @@
-package qa.http_clients.ok_http.endpoints;
+package qa.ok_http.endpoints;
 
 public enum BinanceEndpoints implements ApiEndpoint {
     TICKER_PRICE("/api/v3/ticker/price"),

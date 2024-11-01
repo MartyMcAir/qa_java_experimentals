@@ -1,6 +1,6 @@
-package qa.http_clients.rest_assured;
+package qa.rest_assured;
 
-import qa.http_clients.ok_http.endpoints.ApiEndpoint;
+import qa.ok_http.endpoints.ApiEndpoint;
 
 public enum SpaceXEndpoints implements ApiEndpoint {
     LAUNCHES("/launches"),

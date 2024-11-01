@@ -1,4 +1,4 @@
-package qa.http_clients.retrofit;
+package qa.retrofit;
 
 import retrofit2.Call;
 import retrofit2.Response;

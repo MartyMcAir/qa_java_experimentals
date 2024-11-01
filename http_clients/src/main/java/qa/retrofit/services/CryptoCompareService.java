@@ -1,4 +1,4 @@
-package qa.http_clients.retrofit.services;
+package qa.retrofit.services;
 
 import com.google.gson.JsonObject;
 import lombok.SneakyThrows;

@@ -5,9 +5,7 @@ import com.google.gson.JsonObject;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import qa.http_clients.retrofit.services.CryptoCompareService;
-import qa.http_clients.retrofit.RetrofitCallExecutor;
-import qa.http_clients.retrofit.RetrofitManager;
+import qa.retrofit.services.CryptoCompareService;
 import qa.utils.DateTimeUtils;
 import retrofit2.Call;
 
