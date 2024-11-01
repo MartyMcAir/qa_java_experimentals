@@ -1,5 +1,8 @@
 # qa_java_experimentals
-## https://docs.coingecko.com/reference/introduction - too many requests
+## https://docs.coingecko.com/reference/introduction - err too many requests
+## https://developer.yahoo.com/api/ - yahoo finance _ need api key
+## https://fred.stlouisfed.org/docs/api/api_key.html - need api key
+## https://exchangeratesapi.io/ - need api key
 ## https://public-apis.io/
 ## https://any-api.com/
 

@@ -16,6 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 @MicronautTest
 public class RestCountriesClientTest {
+// https://restcountries.com/
 
     @Inject
     private RestCountriesClient restCountriesClient;
