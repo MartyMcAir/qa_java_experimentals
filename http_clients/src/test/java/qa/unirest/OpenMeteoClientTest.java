@@ -9,6 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class OpenMeteoClientTest {
+// https://open-meteo.com/en/docs
 
     private final OpenMeteoClient openMeteoClient = new OpenMeteoClient();
 
