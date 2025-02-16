@@ -26,6 +26,14 @@ public class UserService {
         return user;
     }
 
+    public Optional<User> updateUser(Long id, User updatedUser) {
+        return getUserById(id).map(existingUser -> {
+            existingUser.setName(updatedUser.getName());
+            existingUser.setEmail(updatedUser.getEmail());
+            return existingUser;
+        });
+    }
+
     public boolean deleteUser(Long id) {
         return users.remove(id) != null;
     }

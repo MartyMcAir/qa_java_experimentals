@@ -72,6 +72,25 @@ public class SparkUserControllerTest {
 
     @Test
     @Order(4)
+    void testUpdateUser() throws IOException, URISyntaxException, ParseException {
+        assertNotNull(createdUserId, "ID пользователя должен быть задан перед тестом");
+
+        HttpPut request = new HttpPut(USERS_ENDPOINT + "/" + createdUserId);
+        request.setEntity(new StringEntity("{\"name\":\"John Doe Updated\",\"email\":\"john.doe.updated@example.com\"}"));
+        request.setHeader("Content-Type", "application/json");
+
+        ClassicHttpResponse response = client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create());
+        assertEquals(200, response.getCode());
+
+        String responseBody = EntityUtils.toString(response.getEntity());
+        assertTrue(responseBody.contains("John Doe Updated"), "Имя пользователя должно быть обновлено");
+        assertTrue(responseBody.contains("john.doe.updated@example.com"), "Email пользователя должен быть обновлен");
+        System.out.println("✅ Пользователь с ID " + createdUserId + " успешно обновлен");
+    }
+
+
+    @Test
+    @Order(5)
     void testDeleteUserById() throws IOException, URISyntaxException {
         assertNotNull(createdUserId, "ID пользователя должен быть задан перед тестом");
 

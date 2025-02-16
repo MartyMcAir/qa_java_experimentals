@@ -60,6 +60,20 @@ public class UserController {
             }
         });
 
+        put("/api/users/:id", (req, res) -> {
+            long userId = Long.parseLong(req.params("id"));
+            User updatedUser = new ObjectMapper().readValue(req.body(), User.class);
+            User result = userService.updateUser(userId, updatedUser).get();
+
+            if (result != null) {
+                res.type("application/json");
+                return new ObjectMapper().writeValueAsString(result);
+            } else {
+                res.status(404);
+                return "";
+            }
+        });
+
         delete("/api/users/:id", (req, res) -> {
             Long id = Long.parseLong(req.params("id"));
             if (userService.deleteUser(id)) {

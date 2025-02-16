@@ -30,6 +30,13 @@ public class UserController {
         return userService.createUser(user);
     }
 
+    @Put("/{id}")
+    public HttpResponse<User> updateUser(@PathVariable Long id, @Body User updatedUser) {
+        Optional<User> user = userService.updateUser(id, updatedUser);
+        return user.map(HttpResponse::ok)
+                .orElseGet(HttpResponse::notFound);
+    }
+
     @Delete("/{id}")
     public HttpResponse<Void> deleteUser(@PathVariable Long id) {
         boolean deleted = userService.deleteUser(id);
