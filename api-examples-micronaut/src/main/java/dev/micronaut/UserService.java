@@ -1,4 +1,4 @@
-package dev.javalin;
+package dev.micronaut;
 
 import dev.model.User;
 import jakarta.inject.Singleton;

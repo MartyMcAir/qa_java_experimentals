@@ -1,0 +1,16 @@
+micronaut:
+  application:
+    name: rest-to-kafka
+  server:
+    port: 8080
+
+kafka:
+  bootstrap:
+    servers: "localhost:9092"
+  producer:
+    key-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+    value-serializer: "org.apache.kafka.common.serialization.StringSerializer"
+  consumer:
+    key-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+    value-deserializer: "org.apache.kafka.common.serialization.StringDeserializer"
+    enable-auto-commit: true

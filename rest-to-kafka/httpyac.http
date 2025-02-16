@@ -1,0 +1,12 @@
+@URL=http://127.0.0.1:8080
+
+@URL=http://127.0.0.1:8080
+
+### Create message in user-topic
+POST {{URL}}/api/kafka?topicName=user-topic
+Content-Type: application/json
+{
+  "id": 1,
+  "name": "John Doe",
+  "email": "john.doe@example.com"
+}

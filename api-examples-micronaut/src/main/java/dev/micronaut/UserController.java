@@ -1,4 +1,4 @@
-package dev.javalin;
+package dev.micronaut;
 
 import dev.model.User;
 import io.micronaut.http.HttpResponse;
