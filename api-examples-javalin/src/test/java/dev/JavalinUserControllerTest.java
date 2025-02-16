@@ -30,12 +30,12 @@ public class JavalinUserControllerTest {
     private static Long createdUserId;
 
     @BeforeAll
-    static void setup() {
+    static void setup() throws InterruptedException {
         // Запускаем Javalin перед тестами
         app = Javalin.create().start(8080);
         UserController userController = new UserController(new ObjectMapper());
         userController.registerRoutes(app);
-
+        Thread.sleep(2000);
         client = HttpClients.createDefault();
     }
 

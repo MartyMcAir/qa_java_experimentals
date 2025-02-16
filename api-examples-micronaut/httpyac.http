@@ -1,0 +1,29 @@
+@URL=http://127.0.0.1:8080
+
+### Create a new user
+POST {{URL}}/api/users
+Content-Type: application/json
+{
+  "name": "John Doe",
+  "email": "john.doe@example.com"
+}
+
+### Get all users
+GET {{URL}}/api/users
+Content-Type: application/json
+
+### Get user by ID
+GET {{URL}}/api/users/1
+Content-Type: application/json
+
+### Update user by ID
+PUT {{URL}}/api/users/1
+Content-Type: application/json
+{
+  "name": "John Doe Updated",
+  "email": "john.doe.updated@example.com"
+}
+
+### Delete user by ID
+DELETE {{URL}}/api/users/1
+Content-Type: application/json

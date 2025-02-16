@@ -19,28 +19,33 @@ import java.util.regex.Pattern;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestMethodOrder(MethodOrderer.OrderAnnotation.class)
-public class SparkUserControllerTest {
+public class MicronautUserControllerTest {
     private static final String BASE_URL = "http://localhost:8080";
     private static final String USERS_ENDPOINT = "/api/users";
     private static CloseableHttpClient client;
     private static Long createdUserId;
 
     @BeforeAll
-    static void setup() throws InterruptedException {
-        new Thread(() -> SparkApplication.main(new String[]{})).start();
-        Thread.sleep(2000);
+    static void setup() throws Exception {
         client = HttpClients.createDefault();
+        new Thread(() -> {
+            try {
+                MicronautApplication.main(new String[]{});
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }).start();
+        Thread.sleep(2000);
     }
 
     @Test
     @Order(1)
-    void testCreateUser() throws IOException, ParseException, URISyntaxException {
+    void testCreateUser() throws IOException, URISyntaxException, ParseException {
         HttpPost request = new HttpPost(USERS_ENDPOINT);
         request.setEntity(new StringEntity("{\"name\":\"John Doe\",\"email\":\"john@example.com\"}"));
         request.setHeader("Content-Type", "application/json");
 
-        try (CloseableHttpResponse response = (CloseableHttpResponse)
-                client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
+        try (CloseableHttpResponse response = (CloseableHttpResponse) client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
             assertEquals(200, response.getCode());
 
             String responseBody = EntityUtils.toString(response.getEntity());
@@ -52,20 +57,26 @@ public class SparkUserControllerTest {
 
     @Test
     @Order(2)
-    void testGetAllUsers() throws IOException, URISyntaxException {
+    void testGetAllUsers() throws IOException, URISyntaxException, ParseException {
         HttpGet request = new HttpGet(USERS_ENDPOINT);
+
         try (CloseableHttpResponse response = (CloseableHttpResponse)
                 client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
             assertEquals(200, response.getCode());
+
+            String responseBody = EntityUtils.toString(response.getEntity());
+            assertTrue(responseBody.contains("John Doe"), "Ответ должен содержать созданного пользователя");
+            System.out.println("✅ Получен список пользователей: " + responseBody);
         }
     }
 
     @Test
     @Order(3)
-    void testGetUserById() throws IOException, ParseException, URISyntaxException {
+    void testGetUserById() throws IOException, URISyntaxException, ParseException {
         assertNotNull(createdUserId, "ID пользователя должен быть задан перед тестом");
 
         HttpGet request = new HttpGet(USERS_ENDPOINT + "/" + createdUserId);
+
         try (CloseableHttpResponse response = (CloseableHttpResponse)
                 client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
             assertEquals(200, response.getCode());
@@ -82,6 +93,7 @@ public class SparkUserControllerTest {
         assertNotNull(createdUserId, "ID пользователя должен быть задан перед тестом");
 
         HttpDelete request = new HttpDelete(USERS_ENDPOINT + "/" + createdUserId);
+
         try (CloseableHttpResponse response = (CloseableHttpResponse)
                 client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
             assertEquals(204, response.getCode());
@@ -103,3 +115,4 @@ public class SparkUserControllerTest {
         return null;
     }
 }
+
