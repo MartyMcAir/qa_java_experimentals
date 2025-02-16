@@ -5,9 +5,9 @@ import dev.javalin.UserController;
 import io.javalin.Javalin;
 import org.apache.hc.client5.http.classic.methods.*;
 import org.apache.hc.client5.http.impl.classic.CloseableHttpClient;
-import org.apache.hc.client5.http.impl.classic.CloseableHttpResponse;
 import org.apache.hc.client5.http.impl.classic.HttpClients;
 import org.apache.hc.client5.http.protocol.HttpClientContext;
+import org.apache.hc.core5.http.ClassicHttpResponse;
 import org.apache.hc.core5.http.HttpHost;
 import org.apache.hc.core5.http.ParseException;
 import org.apache.hc.core5.http.io.entity.StringEntity;
@@ -46,25 +46,21 @@ public class JavalinUserControllerTest {
         request.setEntity(new StringEntity("{\"name\":\"John Doe\",\"email\":\"john@example.com\"}"));
         request.setHeader("Content-Type", "application/json");
 
-        try (CloseableHttpResponse response = (CloseableHttpResponse)
-                client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
-            assertEquals(200, response.getCode());
+        ClassicHttpResponse response = client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create());
+        assertEquals(200, response.getCode());
 
-            String responseBody = EntityUtils.toString(response.getEntity());
-            createdUserId = extractUserId(responseBody);
-            assertNotNull(createdUserId, "ID пользователя должен быть не null");
-            System.out.println("✅ Пользователь создан с ID: " + createdUserId);
-        }
+        String responseBody = EntityUtils.toString(response.getEntity());
+        createdUserId = extractUserId(responseBody);
+        assertNotNull(createdUserId, "ID пользователя должен быть не null");
+        System.out.println("✅ Пользователь создан с ID: " + createdUserId);
     }
 
     @Test
     @Order(2)
     void testGetAllUsers() throws IOException, URISyntaxException {
         HttpGet request = new HttpGet(USERS_ENDPOINT);
-        try (CloseableHttpResponse response = (CloseableHttpResponse)
-                client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
-            assertEquals(200, response.getCode());
-        }
+        ClassicHttpResponse response = client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create());
+        assertEquals(200, response.getCode());
     }
 
     @Test
@@ -73,14 +69,12 @@ public class JavalinUserControllerTest {
         assertNotNull(createdUserId, "ID пользователя должен быть задан перед тестом");
 
         HttpGet request = new HttpGet(USERS_ENDPOINT + "/" + createdUserId);
-        try (CloseableHttpResponse response = (CloseableHttpResponse)
-                client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
-            assertEquals(200, response.getCode());
+        ClassicHttpResponse response = client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create());
+        assertEquals(200, response.getCode());
 
-            String responseBody = EntityUtils.toString(response.getEntity());
-            assertTrue(responseBody.contains("John Doe"), "Ответ должен содержать имя пользователя");
-            System.out.println("✅ Получен пользователь с ID: " + createdUserId);
-        }
+        String responseBody = EntityUtils.toString(response.getEntity());
+        assertTrue(responseBody.contains("John Doe"), "Ответ должен содержать имя пользователя");
+        System.out.println("✅ Получен пользователь с ID: " + createdUserId);
     }
 
     @Test
@@ -89,12 +83,9 @@ public class JavalinUserControllerTest {
         assertNotNull(createdUserId, "ID пользователя должен быть задан перед тестом");
 
         HttpDelete request = new HttpDelete(USERS_ENDPOINT + "/" + createdUserId);
-        try (CloseableHttpResponse response = (CloseableHttpResponse)
-                client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create())) {
-            assertEquals(204, response.getCode());
-            System.out.println("✅ Пользователь с ID " + createdUserId + " удален");
-        }
-
+        ClassicHttpResponse response = client.executeOpen(HttpHost.create(BASE_URL), request, HttpClientContext.create());
+        assertEquals(204, response.getCode());
+        System.out.println("✅ Пользователь с ID " + createdUserId + " удален");
     }
 
     @AfterAll
