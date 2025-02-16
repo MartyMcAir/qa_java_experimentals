@@ -2,7 +2,7 @@ package dev;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import dev.spring.controller.UserController;
-import dev.spring.model.User;
+import dev.model.User;
 import dev.spring.service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -30,9 +30,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @AutoConfigureMockMvc
-@SpringBootTest(classes = {Application.class, UserController.class})
-@Import(UserControllerTest.TestConfig.class)
-public class UserControllerTest {
+@SpringBootTest(classes = {SpringApplication.class, UserController.class})
+@Import(SpringUserControllerTest.TestConfig.class)
+public class SpringUserControllerTest {
 
     @Autowired
     private MockMvc mockMvc;

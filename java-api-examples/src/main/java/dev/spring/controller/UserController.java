@@ -1,6 +1,6 @@
 package dev.spring.controller;
 
-import dev.spring.model.User;
+import dev.model.User;
 import dev.spring.service.UserService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;

@@ -1,17 +1,15 @@
-package dev.spring.service;
+package dev.javalin.service;
 
 import dev.model.User;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.atomic.AtomicLong;
 
-@Service
 public class UserService {
     private final List<User> users = new ArrayList<>();
-    private final AtomicLong counter = new AtomicLong(1); // Для генерации ID
+    private final AtomicLong counter = new AtomicLong(1);
 
     public List<User> getAllUsers() {
         return new ArrayList<>(users);
@@ -22,7 +20,7 @@ public class UserService {
     }
 
     public User createUser(User user) {
-        user.setId(counter.getAndIncrement()); // Генерация ID
+        user.setId(counter.getAndIncrement());
         users.add(user);
         return user;
     }

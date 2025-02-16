@@ -1,4 +1,4 @@
-package dev.spring.model;
+package dev.model;
 
 public class User {
     private Long id;
