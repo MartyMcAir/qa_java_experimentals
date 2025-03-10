@@ -1,4 +1,4 @@
-package dev.kafka;
+package kafka.service;
 
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.AdminClientConfig;

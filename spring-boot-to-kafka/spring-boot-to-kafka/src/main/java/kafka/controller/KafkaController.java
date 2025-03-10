@@ -1,5 +1,8 @@
-package dev.kafka;
+package kafka.controller;
 
+import kafka.service.KafkaAdminService;
+import kafka.service.KafkaConsumerService;
+import kafka.service.KafkaProducerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
