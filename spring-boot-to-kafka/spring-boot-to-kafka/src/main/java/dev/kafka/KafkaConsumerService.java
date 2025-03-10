@@ -16,18 +16,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 public class KafkaConsumerService {
     private final Map<String, List<java.lang.Object>> messages = new HashMap<>();
 
-//    private final List<String> messages = new CopyOnWriteArrayList<>();
-//    @KafkaListener(topics = "test-topic", groupId = "rest-to-kafka-group")
-//    public void listen(ConsumerRecord<String, String> record) {
-//        messages.add(record.value());
-//    }
-//public void listen(String message) {
-//    messages.add(message);
-//}
-//    public List<String> getMessages() {
-//        return new ArrayList<>(messages);
-//    }
-
     @KafkaListener(
             topicPattern = ".*",
             groupId = "rest-to-kafka-group",
