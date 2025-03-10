@@ -25,3 +25,9 @@ curl --location 'http://localhost:8080/api/kafka?topic=test-topic' \
 --header 'Content-Type: application/json' \
 --data 'Hello Kafka Spring 88'
 
+#### Offset Explorer настройки
+- bootstrap server localhost:9092
+- kafka klaster v: 2.5
+- security: Plaintext
+- SASL Mechanism: NONE
+- JAAS Config: empty
