@@ -15,6 +15,9 @@ public class KafkaController {
     private final KafkaConsumerService consumerService;
     private final KafkaAdminService kafkaAdminService;
 
+    // TODO если моя апишка будет все сообщения забирать всегда.
+    //  .тогда нужные сообщения для gas-station-e100 пропадут и все дальше заказы не дойдут до COMPLETED.
+    //  .вариант что бы endpoint выдал сообщение из указанного кафка топика, и потом его же назад вернул (c другим id)
     public KafkaController(KafkaProducerService producerService, KafkaConsumerService consumerService, KafkaAdminService kafkaAdminService) {
         this.producerService = producerService;
         this.consumerService = consumerService;
